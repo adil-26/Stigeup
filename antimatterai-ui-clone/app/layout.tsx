@@ -14,7 +14,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'Antimatter AI - Digital Solutions That Matter',
+  title: 'STIGEUP - Digital Solutions That Matter',
   description:
     'We empower organizations with AI that turns complex challenges into real-world outcomes.',
 }

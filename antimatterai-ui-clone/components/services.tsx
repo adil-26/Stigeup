@@ -5,90 +5,112 @@ import {
   ArrowUpRight,
   Brain,
   Code2,
-  Cpu,
-  Heart,
+  Globe,
+  MessageSquare,
   Palette,
-  Rocket,
+  Search,
+  Smartphone,
 } from "lucide-react"
+import { servicesSection } from "@/lib/homepage-content"
 
 const services = [
   {
     number: "01",
-    title: "Product Design",
+    title: "UI / UX Design",
     icon: Palette,
     description:
-      "End-to-end product design -- from research and UX flows to polished UI systems and developer-ready handoff.",
+      "End-to-end product design that dictates market standards. We craft flawless, high-converting interfaces, from deep user research to developer-ready UI systems that captivate and convert.",
     services: [
       "User Research & Strategy",
       "UX Flows & Wireframes",
-      "UI Systems & Prototypes",
+      "High-Fidelity Prototypes",
       "Design Ops & Dev Handoff",
     ],
+    tools: "Figma, Adobe XD, Spline (3D), Framer",
   },
   {
     number: "02",
-    title: "Development",
-    icon: Code2,
+    title: "Website Development",
+    icon: Globe,
     description:
-      "Robust, scalable products across web and mobile -- from elegant UIs to reliable APIs and automated DevOps.",
+      "High-performance web architectures engineered for absolute digital dominance. We build lightning-fast, scalable platforms, custom e-commerce experiences, and specialized web applications that leave competitors behind.",
     services: [
-      "Frontend Platforms (React / Next)",
-      "Backend APIs & Microservices (Node)",
-      "Mobile & Cross-platform (Flutter)",
-      "CI/CD & Cloud Ops (Docker)",
+      "Custom Web Platforms & Apps",
+      "High-Converting Shopify Stores",
+      "Headless CMS Architecture",
+      "Performance & Security Audits",
     ],
+    tools: "React, Next.js, Webflow, Shopify",
   },
   {
     number: "03",
-    title: "GTM Strategy",
-    icon: Rocket,
+    title: "Software Development",
+    icon: Code2,
     description:
-      "Data-driven go-to-market for SaaS and AI -- clear positioning, smart pricing, and repeatable growth loops.",
+      "Bespoke enterprise ecosystems built to automate and overpower your industry. We architect custom CRMs, ERPs, and internal software that give your business an unfair operational advantage.",
     services: [
-      "ICP & Segmentation",
-      "Positioning, Narrative & Messaging",
-      "Pricing & Packaging",
-      "Demand Gen & Content Engine",
+      "Custom CRM & ERP Systems",
+      "SaaS Platform Architecture",
+      "API Development & Integration",
+      "Cloud Infrastructure Setup",
     ],
+    tools: "Node.js, Python, PostgreSQL, AWS",
   },
   {
     number: "04",
-    title: "Healthcare Apps",
-    icon: Heart,
+    title: "Application Development",
+    icon: Smartphone,
     description:
-      "Secure, compliant healthcare software -- from telehealth to EHR integrations -- built for HIPAA and auditability.",
+      "Elite mobile experiences designed to monopolize user attention. We engineer robust, cross-platform applications that scale effortlessly and deliver flawless performance across all devices.",
     services: [
-      "HIPAA & PHI Compliance",
-      "Telehealth & Patient Portals",
-      "EHR Integrations (FHIR / HL7)",
-      "Audit Logging & Access Controls",
+      "iOS Native Engineering",
+      "Android Native Engineering",
+      "Cross-Platform Development",
+      "App Scaling & Maintenance",
     ],
+    tools: "Flutter, React Native, Swift, Kotlin",
   },
   {
     number: "05",
-    title: "AI Development",
-    icon: Brain,
+    title: "Voicebot / Chatbot",
+    icon: MessageSquare,
     description:
-      "Build production-ready AI -- rapid prototyping to deployed models with solid evals, observability, and safety.",
+      "Autonomous conversational agents that never sleep. We deploy intelligent, human-like AI calling and chat systems that qualify leads and automate customer interactions relentlessly.",
     services: [
-      "LLM Apps & Agents (RAG / Tools)",
-      "Fine-tuning & Prompt Optimization",
-      "Model Evals, Guardrails & Monitoring",
-      "Vision, NLP & Speech Pipelines",
+      "AI Voice Calling Agents",
+      "NLP Chatbot Integration",
+      "Automated Lead Qualification",
+      "Conversational UI/UX",
     ],
+    tools: "OpenAI, Vapi, ElevenLabs, Dialogflow",
   },
   {
     number: "06",
-    title: "IoT Development",
-    icon: Cpu,
+    title: "AI / ML (Artificial Intelligence)",
+    icon: Brain,
     description:
-      "From device firmware to cloud ingestion -- secure, reliable IoT systems with OTA updates and real-time telemetry.",
+      "Cognitive logic and machine learning models that make your business untouchable. We integrate deep tech, automation, and precise data processing to transform complex bottlenecks into instant results.",
     services: [
-      "Embedded Firmware & Drivers",
-      "BLE / Zigbee / LoRa Connectivity",
-      "MQTT Ingestion & Stream Processing",
-      "Edge AI & OTA Update Pipelines",
+      "Machine Learning Models",
+      "AI Data Labeling & Processing",
+      "Intelligent Workflow Automation",
+      "Predictive Analytics",
     ],
+    tools: "TensorFlow, PyTorch, Python, Hugging Face",
+  },
+  {
+    number: "07",
+    title: "SEO / GEO Optimization",
+    icon: Search,
+    description:
+      "Total visibility across both traditional search and next-gen AI engines. We engineer your digital presence to dominate Google rankings and position your brand as the ultimate authority in AI-synthesized answers.",
+    services: [
+      "Generative Engine Optimization (GEO)",
+      "Technical SEO Architecture",
+      "Schema & Knowledge Graphing",
+      "High-Authority Content Strategy",
+    ],
+    tools: "Ahrefs, Semrush, Perplexity AI, Google Search Console",
   },
 ]
 
@@ -135,7 +157,8 @@ export function Services() {
         id="services"
         ref={sectionRef}
         data-active-service={activeIndex}
-        className="relative hidden lg:block h-[460vh]"
+        className="relative hidden lg:block"
+        style={{ height: `${services.length * 72}vh` }}
       >
         <div className="sticky top-16 h-[calc(100vh-64px)] flex items-center">
           <div className="mx-auto w-full max-w-[1500px] px-6">
@@ -145,11 +168,10 @@ export function Services() {
               <div>
                 <div className="flex items-start gap-10 mb-10">
                   <h2 className="font-heading text-5xl font-bold text-foreground">
-                    Our Services
+                    {servicesSection.heading}
                   </h2>
                   <p className="max-w-[360px] text-sm leading-relaxed text-muted-foreground">
-                    We offer comprehensive digital solutions that transform your
-                    business and drive innovation across every touchpoint.
+                    {servicesSection.description}
                   </p>
                 </div>
 
@@ -179,7 +201,7 @@ export function Services() {
                             }`}
                             style={{
                               width: `${isActive ? ACTIVE_WIDTH : PREVIEW_WIDTH}px`,
-                              height: "min(520px, calc(100vh - 220px))",
+                              height: "min(560px, calc(100vh - 180px))",
                             }}
                           >
                             {!isActive && (
@@ -204,7 +226,7 @@ export function Services() {
                             <div className="h-full flex flex-col">
                               <div className="flex items-start justify-between">
                                 {isActive ? (
-                                  <h3 className="font-heading text-5xl/none font-semibold text-foreground">
+                                  <h3 className="font-heading text-3xl/none font-semibold text-foreground md:text-4xl/none">
                                     {service.title}
                                   </h3>
                                 ) : (
@@ -217,7 +239,7 @@ export function Services() {
 
                               {isActive ? (
                                 <>
-                                  <p className="mt-10 text-2xl/normal text-foreground/90 max-w-[92%]">
+                                  <p className="mt-7 text-base leading-relaxed text-foreground/90">
                                     {service.description}
                                   </p>
                                   <div className="mt-auto pt-6">
@@ -230,16 +252,22 @@ export function Services() {
                                     {service.services.map((item) => (
                                       <p
                                         key={item}
-                                        className="text-lg leading-relaxed text-foreground/85"
+                                        className="text-[15px] leading-relaxed text-foreground/85"
                                       >
                                         {item}
                                       </p>
                                     ))}
+                                    <p className="mt-4 text-xs leading-relaxed text-foreground/70">
+                                      <span className="font-semibold text-foreground/90">
+                                        Tools:
+                                      </span>{" "}
+                                      {service.tools}
+                                    </p>
                                   </div>
                                 </>
                               ) : (
                                 <div className="mt-auto">
-                                  <h4 className="font-heading text-4xl font-semibold text-foreground/95">
+                                  <h4 className="font-heading text-3xl font-semibold text-foreground/95">
                                     {service.title}
                                   </h4>
                                 </div>
@@ -259,9 +287,12 @@ export function Services() {
 
       <section className="relative lg:hidden py-24 md:py-32" aria-label="Our Services">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="font-heading text-3xl font-bold text-foreground mb-6">
-            Our Services
+          <h2 className="font-heading text-3xl font-bold text-foreground mb-4">
+            {servicesSection.heading}
           </h2>
+          <p className="mb-8 text-sm leading-relaxed text-muted-foreground">
+            {servicesSection.description}
+          </p>
           <div className="space-y-3">
             {services.map((service, index) => (
               <article
@@ -275,6 +306,17 @@ export function Services() {
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {service.description}
+                </p>
+                <div className="mt-4 space-y-1">
+                  {service.services.map((item) => (
+                    <p key={item} className="text-sm text-foreground/90">
+                      {item}
+                    </p>
+                  ))}
+                </div>
+                <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                  <span className="font-semibold text-foreground/90">Tools:</span>{" "}
+                  {service.tools}
                 </p>
               </article>
             ))}

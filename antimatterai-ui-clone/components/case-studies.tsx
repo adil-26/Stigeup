@@ -1,65 +1,36 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
-
-const caseStudies = [
-  {
-    number: "01",
-    title: "Clinix AI",
-    tags: ["Web Design", "App Design", "AI Development", "GTM"],
-    color: "from-primary/20 to-primary/5",
-  },
-  {
-    number: "02",
-    title: "Synergies4",
-    tags: ["App Design", "AI Development"],
-    color: "from-primary/15 to-primary/5",
-  },
-  {
-    number: "03",
-    title: "Curehire",
-    tags: ["Web Design", "Development"],
-    color: "from-primary/20 to-primary/5",
-  },
-  {
-    number: "04",
-    title: "OWASP Foundation",
-    tags: ["Web Design", "Development"],
-    color: "from-primary/15 to-primary/5",
-  },
-  {
-    number: "05",
-    title: "Feature",
-    tags: ["App Design", "GTM"],
-    color: "from-primary/20 to-primary/5",
-  },
-]
+import { caseStudiesSection, homepageCaseStudies } from "@/lib/homepage-content"
 
 export function CaseStudies() {
   const [activeIndex, setActiveIndex] = useState(0)
+
+  if (homepageCaseStudies.length === 0) {
+    return null
+  }
+
+  const activeStudy = homepageCaseStudies[activeIndex] ?? homepageCaseStudies[0]
 
   return (
     <section id="case-studies" className="py-24 md:py-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-16 max-w-2xl">
-          <p className="mb-3 text-sm uppercase tracking-[0.2em] text-primary font-medium">
-            Case Studies
-          </p>
           <h2 className="font-heading text-3xl font-bold text-foreground sm:text-4xl md:text-5xl text-balance">
-            Proven results, measurable impact.
+            {caseStudiesSection.heading}
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            Explore the transformations we have delivered.
+            {caseStudiesSection.description}
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {/* Left: Case study list */}
           <div className="flex flex-col gap-2">
-            {caseStudies.map((study, index) => (
+            {homepageCaseStudies.map((study, index) => (
               <button
-                key={study.number}
+                key={study.id}
                 onClick={() => setActiveIndex(index)}
                 className={`group flex items-start gap-4 rounded-xl border p-5 text-left transition-all duration-300 ${
                   activeIndex === index
@@ -69,9 +40,7 @@ export function CaseStudies() {
               >
                 <span
                   className={`font-mono text-xs mt-1 ${
-                    activeIndex === index
-                      ? "text-primary"
-                      : "text-muted-foreground"
+                    activeIndex === index ? "text-primary" : "text-muted-foreground"
                   }`}
                 >
                   {study.number}
@@ -109,31 +78,59 @@ export function CaseStudies() {
             ))}
           </div>
 
-          {/* Right: Case study preview */}
           <div className="relative hidden lg:block">
             <div
-              className={`h-full min-h-[400px] rounded-2xl border border-border bg-gradient-to-br ${caseStudies[activeIndex].color} flex items-center justify-center transition-all duration-500`}
+              className={`relative h-full min-h-[400px] overflow-hidden rounded-2xl border border-border bg-gradient-to-br ${activeStudy.previewGradient} transition-all duration-500`}
             >
-              <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-card">
-                  <span className="font-heading text-2xl font-bold text-primary">
-                    {caseStudies[activeIndex].title.charAt(0)}
-                  </span>
+              {activeStudy.imageSrc ? (
+                <>
+                  <Image
+                    src={activeStudy.imageSrc}
+                    alt={activeStudy.imageAlt}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/5" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="font-heading text-2xl font-bold text-foreground">
+                      {activeStudy.title}
+                    </h3>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {activeStudy.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-xs text-white/90"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className="flex h-full items-center justify-center">
+                  <div className="text-center">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-card">
+                      <span className="font-heading text-2xl font-bold text-primary">
+                        {activeStudy.title.charAt(0)}
+                      </span>
+                    </div>
+                    <h3 className="font-heading text-2xl font-bold text-foreground">
+                      {activeStudy.title}
+                    </h3>
+                    <div className="mt-3 flex flex-wrap justify-center gap-2">
+                      {activeStudy.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-border bg-card/50 px-3 py-1 text-xs text-muted-foreground"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-heading text-2xl font-bold text-foreground">
-                  {caseStudies[activeIndex].title}
-                </h3>
-                <div className="mt-3 flex flex-wrap justify-center gap-2">
-                  {caseStudies[activeIndex].tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-border bg-card/50 px-3 py-1 text-xs text-muted-foreground"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

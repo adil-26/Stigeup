@@ -48,7 +48,7 @@ export function Navbar() {
           {/* CTA */}
           <div className="hidden md:flex items-center">
             <Link
-              href="#contact"
+              href="/contact"
               className="group inline-flex items-center gap-2 rounded-full bg-primary pl-5 pr-1.5 py-1.5 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110"
             >
               Contact us
@@ -82,7 +82,7 @@ export function Navbar() {
               </Link>
             ))}
             <Link
-              href="#contact"
+              href="/contact"
               onClick={() => setIsOpen(false)}
               className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2 text-sm font-medium text-foreground text-center transition-colors hover:border-muted-foreground/50"
             >

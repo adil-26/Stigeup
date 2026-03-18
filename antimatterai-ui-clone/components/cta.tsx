@@ -19,7 +19,7 @@ export function CTA() {
         </h2>
         <div className="mt-10">
           <Link
-            href="mailto:atom@antimatterai.com"
+            href="/contact"
             className="group inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-base font-medium text-primary-foreground transition-all hover:bg-primary/90 hover:scale-105"
           >
             {"Let's work together"}
@@ -30,7 +30,7 @@ export function CTA() {
           </Link>
         </div>
         <p className="mt-6 text-sm text-muted-foreground">
-          atom@antimatterai.com
+          hello@stigeup.com
         </p>
       </div>
     </section>
