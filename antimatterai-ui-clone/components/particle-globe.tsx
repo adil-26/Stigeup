@@ -1,10 +1,11 @@
 "use client"
 
 import { useRef, useMemo, useEffect, useCallback } from "react"
+import type { RefObject } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import * as THREE from "three"
 
-const PARTICLE_COUNT = 3000
+const PARTICLE_COUNT = 2200
 
 // Shape generators -- each returns an array of [x, y, z] positions
 function generateSphere(count: number, radius: number): Float32Array {
@@ -423,11 +424,24 @@ const SHAPES = [
   { name: "chip", generate: () => generateChip(PARTICLE_COUNT, 2) }, // IoT Development
 ]
 
+const SERVICE_TO_SHAPE_INDEX = [2, 1, 3, 7, 6, 5, 4]
+
+export type ParticleGlobeInputs = {
+  scrollProgress: number
+  activeService: number
+  activeServiceFloat?: number
+  servicesVisible: boolean
+  servicesProgress: number
+  animate: boolean
+}
+
 interface ParticleFieldProps {
   scrollProgress: number
   activeService: number
   servicesVisible: boolean
   servicesProgress: number
+  animate: boolean
+  inputsRef?: RefObject<ParticleGlobeInputs>
 }
 
 function ParticleField({
@@ -435,6 +449,8 @@ function ParticleField({
   activeService,
   servicesVisible,
   servicesProgress,
+  animate,
+  inputsRef,
 }: ParticleFieldProps) {
   const pointsRef = useRef<THREE.Points>(null)
   const materialRef = useRef<THREE.PointsMaterial>(null)
@@ -482,67 +498,97 @@ function ParticleField({
 
   // Determine target shape based on scroll
   const getTargetShape = useCallback(
-    (scroll: number, service: number, isServicesVisible: boolean, sectionProgress: number): Float32Array => {
-      if (!isServicesVisible || scroll < 0.16 || sectionProgress < 0.12) {
-        // Hero only: keep sphere
+    (service: number, isServicesVisible: boolean): Float32Array => {
+      if (!isServicesVisible) {
         return allShapes[0]
-      } else if (sectionProgress < 0.06 && service === 0) {
-        // Very short entry phase for services intro.
-        return allShapes[1]
       } else {
-        // In services section -- strictly follow active service card.
-        const shapeIndex = Math.min(service + 2, allShapes.length - 1)
+        const mapped = SERVICE_TO_SHAPE_INDEX[service % SERVICE_TO_SHAPE_INDEX.length] ?? 0
+        const shapeIndex = Math.max(0, Math.min(mapped, allShapes.length - 1))
         return allShapes[shapeIndex]
       }
     },
     [allShapes]
   )
 
+  const phasesX = useMemo(() => {
+    const arr = new Float32Array(PARTICLE_COUNT)
+    for (let i = 0; i < PARTICLE_COUNT; i++) arr[i] = Math.random() * Math.PI * 2
+    return arr
+  }, [])
+
+  const phasesY = useMemo(() => {
+    const arr = new Float32Array(PARTICLE_COUNT)
+    for (let i = 0; i < PARTICLE_COUNT; i++) arr[i] = Math.random() * Math.PI * 2
+    return arr
+  }, [])
+
   useFrame((state, delta) => {
     if (!pointsRef.current) return
 
+    const inputs = inputsRef?.current
+    const effectiveActiveService = inputs?.activeService ?? activeService
+    const effectiveActiveServiceFloat =
+      inputs?.activeServiceFloat ?? effectiveActiveService
+    const effectiveServicesVisible = inputs?.servicesVisible ?? servicesVisible
+    const effectiveServicesProgress = inputs?.servicesProgress ?? servicesProgress
+    const effectiveAnimate = inputs?.animate ?? animate
+
     const positions = pointsRef.current.geometry.attributes.position
       .array as Float32Array
-    const target = getTargetShape(
-      scrollProgress,
-      activeService,
-      servicesVisible,
-      servicesProgress
-    )
     const isOpeningHero = isHeroLogo
 
-    const inRectanglePhase = servicesVisible && servicesProgress < 0.06 && activeService === 0
-    const lerpSpeed = (inRectanglePhase ? 1.5 : 3.2) * delta
+    const lerpSpeed = 2.5 * delta
     const time = state.clock.elapsedTime
+    const tSlowX = time * 0.3
+    const tSlowY = time * 0.4
+    const tFastX = time * 2.25
+    const tFastY = time * 2.05
+
+    const maxServiceIndex = Math.max(0, SERVICE_TO_SHAPE_INDEX.length - 1)
+    const serviceFloat = effectiveServicesVisible
+      ? Math.max(0, Math.min(maxServiceIndex, effectiveActiveServiceFloat))
+      : 0
+    const serviceFloor = Math.floor(serviceFloat)
+    const serviceCeil = Math.min(serviceFloor + 1, maxServiceIndex)
+    const serviceBlend = Math.max(0, Math.min(1, serviceFloat - serviceFloor))
+    const shapeA = getTargetShape(serviceFloor, effectiveServicesVisible)
+    const shapeB = getTargetShape(serviceCeil, effectiveServicesVisible)
+    const invBlend = 1 - serviceBlend
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       const i3 = i * 3
 
       // Lerp toward target with spring-like motion
-      const dx = target[i3] - currentPositions.current[i3]
-      const dy = target[i3 + 1] - currentPositions.current[i3 + 1]
-      const dz = target[i3 + 2] - currentPositions.current[i3 + 2]
+      const tx = shapeA[i3] * invBlend + shapeB[i3] * serviceBlend
+      const ty = shapeA[i3 + 1] * invBlend + shapeB[i3 + 1] * serviceBlend
+      const tz = shapeA[i3 + 2] * invBlend + shapeB[i3 + 2] * serviceBlend
+
+      const dx = tx - currentPositions.current[i3]
+      const dy = ty - currentPositions.current[i3 + 1]
+      const dz = tz - currentPositions.current[i3 + 2]
 
       velocities.current[i3] += dx * lerpSpeed * 0.5
       velocities.current[i3 + 1] += dy * lerpSpeed * 0.5
       velocities.current[i3 + 2] += dz * lerpSpeed * 0.5
 
       // Damping
-      velocities.current[i3] *= 0.92
-      velocities.current[i3 + 1] *= 0.92
-      velocities.current[i3 + 2] *= 0.92
+      velocities.current[i3] *= 0.9
+      velocities.current[i3 + 1] *= 0.9
+      velocities.current[i3 + 2] *= 0.9
 
       currentPositions.current[i3] += velocities.current[i3]
       currentPositions.current[i3 + 1] += velocities.current[i3 + 1]
       currentPositions.current[i3 + 2] += velocities.current[i3 + 2]
 
-      // Add subtle floating motion
-      const floatX = isOpeningHero
-        ? Math.sin(time * 2.25 + i * 0.27) * 0.0039
-        : Math.sin(time * 0.3 + i * 0.01) * 0.015
-      const floatY = isOpeningHero
-        ? Math.cos(time * 2.05 + i * 0.31) * 0.0039
-        : Math.cos(time * 0.4 + i * 0.015) * 0.015
+      const amp = effectiveAnimate ? (isOpeningHero ? 0.0039 : 0.013) : 0
+      const floatX =
+        amp === 0
+          ? 0
+          : Math.sin((isOpeningHero ? tFastX : tSlowX) + phasesX[i]) * amp
+      const floatY =
+        amp === 0
+          ? 0
+          : Math.cos((isOpeningHero ? tFastY : tSlowY) + phasesY[i]) * amp
 
       positions[i3] = currentPositions.current[i3] + floatX
       positions[i3 + 1] = currentPositions.current[i3 + 1] + floatY
@@ -571,24 +617,12 @@ function ParticleField({
     return sphereShape
   }, [sphereShape])
 
-  const sizes = useMemo(() => {
-    const s = new Float32Array(PARTICLE_COUNT)
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      s[i] = 0.8 + Math.random() * 1.5
-    }
-    return s
-  }, [])
-
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
           args={[initialPositions, 3]}
-        />
-        <bufferAttribute
-          attach="attributes-size"
-          args={[sizes, 1]}
         />
       </bufferGeometry>
       <pointsMaterial
@@ -610,6 +644,8 @@ interface ParticleGlobeProps {
   activeService: number
   servicesVisible: boolean
   servicesProgress: number
+  animate?: boolean
+  inputsRef?: RefObject<ParticleGlobeInputs>
 }
 
 export function ParticleGlobe({
@@ -617,7 +653,11 @@ export function ParticleGlobe({
   activeService,
   servicesVisible,
   servicesProgress,
+  animate = true,
+  inputsRef,
 }: ParticleGlobeProps) {
+  const effectiveAnimate = inputsRef?.current?.animate ?? animate
+
   return (
     <div
       className="w-full h-full transition-none"
@@ -625,8 +665,9 @@ export function ParticleGlobe({
     >
       <Canvas
         camera={{ position: [0, 0, 6], fov: 50 }}
-        dpr={[1, 1.5]}
-        gl={{ antialias: false, alpha: true }}
+        dpr={[1, 1.25]}
+        frameloop={effectiveAnimate ? "always" : "demand"}
+        gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
         style={{ background: "transparent" }}
       >
         <ambientLight intensity={0.2} />
@@ -639,6 +680,8 @@ export function ParticleGlobe({
             activeService={activeService}
             servicesVisible={servicesVisible}
             servicesProgress={servicesProgress}
+            animate={effectiveAnimate}
+            inputsRef={inputsRef}
           />
         </group>
       </Canvas>

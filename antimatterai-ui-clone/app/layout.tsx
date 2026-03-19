@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Space_Grotesk } from 'next/font/google'
 
 import './globals.css'
+import { CookieBanner } from "@/components/cookie-banner"
 
 const inter = Inter({
   subsets: ['latin'],
@@ -14,9 +15,30 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'STIGEUP - Digital Solutions That Matter',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://stigeup.com"),
+  title: {
+    default: "STIGEUP - Digital Solutions That Matter",
+    template: "%s | STIGEUP",
+  },
   description:
-    'We empower organizations with AI that turns complex challenges into real-world outcomes.',
+    "We empower organizations with AI that turns complex challenges into real-world outcomes.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "STIGEUP",
+    title: "STIGEUP - Digital Solutions That Matter",
+    description:
+      "We empower organizations with AI that turns complex challenges into real-world outcomes.",
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "STIGEUP - Digital Solutions That Matter",
+    description:
+      "We empower organizations with AI that turns complex challenges into real-world outcomes.",
+  },
 }
 
 export default function RootLayout({
@@ -30,6 +52,7 @@ export default function RootLayout({
         className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}
       >
         {children}
+        <CookieBanner />
       </body>
     </html>
   )

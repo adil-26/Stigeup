@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { ArrowUpRight } from "lucide-react"
 import { caseStudiesSection, homepageCaseStudies } from "@/lib/homepage-content"
+import { AnimatedArrow } from "@/components/ui/animated-arrow"
 
 export function CaseStudies() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -55,6 +55,17 @@ export function CaseStudies() {
                   >
                     {study.title}
                   </h3>
+                  {study.imageSrc ? (
+                    <div className="relative mt-3 h-24 overflow-hidden rounded-lg border border-border/80 lg:hidden">
+                      <Image
+                        src={study.imageSrc}
+                        alt={study.imageAlt}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
+                    </div>
+                  ) : null}
                   <div className="mt-2 flex flex-wrap gap-2">
                     {study.tags.map((tag) => (
                       <span
@@ -66,14 +77,15 @@ export function CaseStudies() {
                     ))}
                   </div>
                 </div>
-                <ArrowUpRight
-                  size={16}
-                  className={`mt-1 transition-all ${
+                <span
+                  className={`mt-1 transition-opacity ${
                     activeIndex === index
                       ? "text-primary opacity-100"
                       : "text-muted-foreground opacity-0 group-hover:opacity-100"
                   }`}
-                />
+                >
+                  <AnimatedArrow size={16} />
+                </span>
               </button>
             ))}
           </div>
@@ -88,9 +100,9 @@ export function CaseStudies() {
                     src={activeStudy.imageSrc}
                     alt={activeStudy.imageAlt}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/5" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/5" />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <h3 className="font-heading text-2xl font-bold text-foreground">
                       {activeStudy.title}

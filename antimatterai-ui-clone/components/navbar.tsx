@@ -3,18 +3,21 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, ArrowUpRight } from "lucide-react"
+import { Menu, X } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { AnimatedArrow } from "@/components/ui/animated-arrow"
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#case-studies" },
-  { label: "FAQs", href: "#" },
-  { label: "Reviews", href: "#" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ]
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-5 pt-4">
@@ -38,7 +41,16 @@ export function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                aria-current={
+                  (link.href === "/" ? pathname === "/" : pathname.startsWith(link.href))
+                    ? "page"
+                    : undefined
+                }
+                className={`text-sm transition-colors ${
+                  link.href === "/" ? pathname === "/" : pathname.startsWith(link.href)
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
                 {link.label}
               </Link>
@@ -52,8 +64,8 @@ export function Navbar() {
               className="group inline-flex items-center gap-2 rounded-full bg-primary pl-5 pr-1.5 py-1.5 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110"
             >
               Contact us
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-foreground text-primary transition-transform group-hover:rotate-12">
-                <ArrowUpRight size={14} />
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-foreground text-primary">
+                <AnimatedArrow size={14} />
               </span>
             </Link>
           </div>
@@ -76,7 +88,16 @@ export function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                aria-current={
+                  (link.href === "/" ? pathname === "/" : pathname.startsWith(link.href))
+                    ? "page"
+                    : undefined
+                }
+                className={`text-sm transition-colors ${
+                  link.href === "/" ? pathname === "/" : pathname.startsWith(link.href)
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
                 {link.label}
               </Link>
@@ -84,10 +105,10 @@ export function Navbar() {
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
-              className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2 text-sm font-medium text-foreground text-center transition-colors hover:border-muted-foreground/50"
+              className="group inline-flex items-center gap-2 rounded-full border border-border px-5 py-2 text-sm font-medium text-foreground text-center transition-colors hover:border-muted-foreground/50"
             >
               Start Your Project
-              <ArrowUpRight size={14} />
+              <AnimatedArrow size={14} />
             </Link>
           </div>
         </div>

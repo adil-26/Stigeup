@@ -1,0 +1,16 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#06080C"/>
+  <circle cx="250" cy="160" r="250" fill="#3A8CFF" fill-opacity="0.22"/>
+  <circle cx="1340" cy="770" r="300" fill="#FF5A00" fill-opacity="0.23"/>
+  <rect x="116" y="138" width="1368" height="624" rx="40" fill="white" fill-opacity="0.05" stroke="white" stroke-opacity="0.2"/>
+  <rect x="188" y="220" width="596" height="470" rx="28" fill="#0D1320" stroke="#324766"/>
+  <rect x="250" y="298" width="470" height="52" rx="14" fill="white" fill-opacity="0.1"/>
+  <rect x="250" y="372" width="470" height="52" rx="14" fill="white" fill-opacity="0.1"/>
+  <rect x="250" y="446" width="360" height="52" rx="14" fill="white" fill-opacity="0.1"/>
+  <rect x="830" y="236" width="584" height="138" rx="20" fill="white" fill-opacity="0.08"/>
+  <rect x="830" y="406" width="584" height="138" rx="20" fill="white" fill-opacity="0.08"/>
+  <rect x="830" y="576" width="324" height="86" rx="16" fill="#FF5A00" fill-opacity="0.9"/>
+  <text x="222" y="272" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="38" font-weight="700">OWASP Foundation</text>
+  <text x="860" y="318" fill="#E6EBFF" font-family="Arial, sans-serif" font-size="30">Security benchmarking platform</text>
+  <text x="860" y="488" fill="#E6EBFF" font-family="Arial, sans-serif" font-size="30">High-performance scan pipelines</text>
+</svg>

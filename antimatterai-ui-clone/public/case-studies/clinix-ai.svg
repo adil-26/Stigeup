@@ -1,0 +1,16 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#05070D"/>
+  <circle cx="1220" cy="120" r="330" fill="#FF5A00" fill-opacity="0.22"/>
+  <circle cx="240" cy="820" r="260" fill="#2847FF" fill-opacity="0.2"/>
+  <rect x="130" y="170" width="1340" height="560" rx="34" fill="white" fill-opacity="0.06" stroke="white" stroke-opacity="0.2"/>
+  <rect x="190" y="250" width="530" height="390" rx="22" fill="#11162B" stroke="#3C4A83"/>
+  <rect x="760" y="250" width="640" height="84" rx="14" fill="white" fill-opacity="0.08"/>
+  <rect x="760" y="362" width="640" height="84" rx="14" fill="white" fill-opacity="0.08"/>
+  <rect x="760" y="474" width="640" height="84" rx="14" fill="white" fill-opacity="0.08"/>
+  <rect x="760" y="586" width="360" height="54" rx="12" fill="#FF5A00" fill-opacity="0.84"/>
+  <text x="210" y="318" fill="#F6F7FC" font-family="Arial, sans-serif" font-size="40" font-weight="700">Clinix AI</text>
+  <text x="210" y="364" fill="#C5CEE8" font-family="Arial, sans-serif" font-size="26">Patient Workflow Intelligence</text>
+  <text x="786" y="305" fill="#DEE4FF" font-family="Arial, sans-serif" font-size="28">Lead qualification pipeline</text>
+  <text x="786" y="416" fill="#DEE4FF" font-family="Arial, sans-serif" font-size="28">Voice agent call orchestration</text>
+  <text x="786" y="529" fill="#DEE4FF" font-family="Arial, sans-serif" font-size="28">Automated care team handoff</text>
+</svg>

@@ -18,7 +18,7 @@ const companyLinks = [
   { label: "About us", href: "#" },
   { label: "Case studies", href: "#case-studies" },
   { label: "Contact us", href: "/contact" },
-  { label: "Insights / Blog", href: "#" },
+  { label: "Insights / Blog", href: "/blog" },
   { label: "Careers", href: "#" },
 ]
 
@@ -152,19 +152,19 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <Link
-              href="#"
+              href="/privacy-policy"
               className="text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
-              href="#"
+              href="/terms-of-service"
               className="text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
               Terms of Service
             </Link>
             <Link
-              href="#"
+              href="/cookie-policy"
               className="text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
               Cookie Policy
