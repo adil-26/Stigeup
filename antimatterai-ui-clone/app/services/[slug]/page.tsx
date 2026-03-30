@@ -103,49 +103,6 @@ export default async function ServicePage({ params }: Props) {
         </div>
       </section>
 
-      {/* SECTION 3: PRODUCTS / DELIVERABLES SHOWCASE */}
-      <section className="py-20 md:py-32 border-b border-white/5">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="mb-16 text-center">
-            <h2 className="font-heading text-3xl font-semibold md:text-5xl">What's Included</h2>
-          </div>
-          
-          <Accordion type="single" collapsible className="w-full space-y-4">
-            {service.products.map((product, i) => (
-              <AccordionItem key={i} value={`product-${i}`} className="border border-white/10 rounded-2xl px-2 bg-white/[0.01]">
-                <AccordionTrigger className="text-left py-6 px-4 hover:no-underline hover:text-white group">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-                    <span className="font-mono text-sm text-primary tracking-wider">{product.number}</span>
-                    <span className="font-heading text-xl font-semibold text-white group-hover:text-primary transition-colors">{product.title}</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-4 pb-6 pt-2">
-                  <div className="space-y-6 lg:pr-12">
-                    <p className="text-muted-foreground leading-relaxed text-base">{product.fullDescription}</p>
-                    <div className="grid sm:grid-cols-2 gap-8 pt-4 border-t border-white/5">
-                      <div>
-                        <h4 className="text-xs font-semibold uppercase tracking-widest text-white/50 mb-4">Timeline</h4>
-                        <p className="text-white font-medium">{product.timeline}</p>
-                      </div>
-                      <div>
-                        <h4 className="text-xs font-semibold uppercase tracking-widest text-white/50 mb-4">Deliverables</h4>
-                        <ul className="space-y-2">
-                          {product.deliverables.map(del => (
-                            <li key={del} className="flex items-start gap-2 text-sm text-white/80">
-                              <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                              {del}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
 
       {/* SECTION 4: TECHNOLOGY STACK */}
       <section className="py-20 md:py-28 border-b border-white/5 bg-black/40 overflow-hidden">
