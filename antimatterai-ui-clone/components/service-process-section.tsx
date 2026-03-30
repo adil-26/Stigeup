@@ -154,137 +154,64 @@ export function ServiceProcessSection({
             exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
             transition={{ duration: 0.4 }}
           >
-            {/* Horizontal flow pills */}
-            <div className="flex items-center gap-0 mb-10 overflow-x-auto pb-6 hide-scrollbar relative">
-              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
+            {/* Vertical Flow Graph */}
+            <div className="relative py-10 max-w-5xl mx-auto">
+              {/* Central Glowing Spline/Edge */}
+              <div className="absolute top-0 bottom-0 left-[28px] md:left-1/2 w-[2px] bg-gradient-to-b from-primary/50 via-primary/10 to-transparent md:-translate-x-1/2" />
+              
               {steps.map((step, i) => (
-                <div key={i} className="flex items-center shrink-0">
-                  <button
-                    onClick={() => setActiveStep(i)}
-                    className={`
-                      relative flex items-center gap-3 px-5 py-2.5 rounded-full text-sm font-bold tracking-wide
-                      border transition-colors duration-300 whitespace-nowrap overflow-hidden
-                      ${
-                        activeStep === i
-                          ? "border-primary/50 text-white shadow-[0_0_30px_rgba(255,100,0,0.3)] scale-105"
-                          : i < activeStep
-                          ? "border-primary/40 text-primary bg-primary/10 hover:bg-primary/20"
-                          : "border-white/10 text-muted-foreground hover:border-white/30 hover:text-white bg-black/50 backdrop-blur-md"
-                      }
-                    `}
-                  >
-                    {/* Active State Background Glide */}
-                    {activeStep === i && (
-                      <motion.div
-                        layoutId="active-step-pill"
-                        className="absolute inset-0 bg-primary backdrop-blur-sm z-0"
-                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                      />
-                    )}
-                    
-                    <div className="relative z-10 flex items-center gap-3">
-                      {i < activeStep ? (
-                        <CheckCircle2 size={16} className="text-primary" />
-                      ) : (
-                        <span
-                          className={`w-6 h-6 rounded-full border flex items-center justify-center font-heading text-xs
-                          ${
-                            activeStep === i
-                              ? "border-white text-white bg-white/20"
-                              : "border-current opacity-60"
-                          }`}
-                        >
-                          {step.number}
-                        </span>
-                      )}
-                      <span className={activeStep === i ? "text-white" : ""}>{step.title}</span>
-                    </div>
-                  </button>
-                  {i < steps.length - 1 && (
-                    <motion.div 
-                      initial={false}
-                      animate={{ scale: activeStep === i ? 1.2 : 1 }}
-                    >
-                      <ChevronRight
-                        size={18}
-                        className={`mx-3 shrink-0 transition-colors ${
-                          i < activeStep ? "text-primary shadow-primary" : "text-white/20"
-                        }`}
-                      />
-                    </motion.div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Expanded step detail via TiltReveal for extreme 3D depth */}
-            <AnimatePresence mode="wait">
-              <TiltReveal key={activeStep}>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95, rotateX: 10 }}
-                  animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-                  exit={{ opacity: 0, scale: 0.95, rotateX: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="rounded-[2.5rem] p-10 md:p-14 relative overflow-hidden group bg-gradient-to-b from-white/[0.04] to-transparent border border-white/10 shadow-2xl backdrop-blur-2xl"
-                >
-                  {/* Subtle hover gradient sweep */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div key={i} className={`relative flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16 mb-20 last:mb-0 ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}>
                   
-                  <div className="relative z-10 flex flex-col md:flex-row items-start gap-8 md:gap-14">
-                    <span className="text-primary font-heading text-6xl md:text-8xl font-black opacity-[0.15] mt-1 tracking-tighter mix-blend-plus-lighter">
-                      {steps[activeStep].number}
-                    </span>
-                    <div className="flex-1">
-                      <h3 className="font-heading text-3xl md:text-4xl font-semibold text-white mb-6">
-                        {steps[activeStep].title}
-                      </h3>
-                      <p className="text-muted-foreground text-xl leading-relaxed mb-10 max-w-3xl">
-                        {steps[activeStep].description}
-                      </p>
+                  {/* Central Node */}
+                  <div className="absolute left-[28px] md:left-1/2 -translate-x-1/2 flex items-center justify-center w-14 h-14 rounded-full bg-black border-2 border-primary shadow-[0_0_20px_rgba(255,100,0,0.4)] z-10">
+                    <span className="text-primary font-heading font-black text-lg">{step.number}</span>
+                  </div>
 
-                      <div className="border-t border-white/10 pt-8">
-                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-5 flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                          Key Deliverables
+                  {/* Spacer for empty side on desktop */}
+                  <div className="hidden md:block md:w-1/2" />
+
+                  {/* Content Card via TiltReveal */}
+                  <TiltReveal className="w-full pl-20 md:pl-0 md:w-1/2">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className="p-8 md:p-10 rounded-[2rem] bg-gradient-to-tr from-white/[0.04] to-transparent border border-white/10 backdrop-blur-xl relative overflow-hidden group shadow-2xl"
+                    >
+                      {/* Subtle hover sweep */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                      
+                      <div className="relative z-10">
+                        <h3 className="font-heading text-2xl md:text-3xl font-semibold text-white mb-5 group-hover:text-primary transition-colors duration-300">
+                          {step.title}
+                        </h3>
+                        <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+                          {step.description}
                         </p>
-                        <div className="flex flex-wrap gap-4">
-                          {steps[activeStep].deliverables.map((d, i) => (
-                            <motion.span
-                              key={d}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.1 + i * 0.05 }}
-                              className="text-sm font-medium px-5 py-2.5 rounded-full border border-white/10 text-white/90 bg-black/80 shadow-xl backdrop-blur-md"
-                            >
-                              {d}
-                            </motion.span>
-                          ))}
+                        
+                        <div className="border-t border-white/10 pt-6 mt-auto">
+                          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-4 flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                            Deliverables
+                          </p>
+                          <div className="flex flex-wrap gap-3">
+                            {step.deliverables.map((d, di) => (
+                              <span
+                                key={di}
+                                className="text-xs font-semibold tracking-wide px-4 py-2 rounded-full border border-white/10 text-white/80 bg-black/60 shadow-lg backdrop-blur-md"
+                              >
+                                {d}
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </TiltReveal>
-            </AnimatePresence>
+                    </motion.div>
+                  </TiltReveal>
 
-            {/* Prev / Next navigation */}
-            <div className="flex justify-between items-center mt-10 px-4">
-              <button
-                onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
-                disabled={activeStep === 0}
-                className="text-sm font-bold tracking-wide text-muted-foreground hover:text-white disabled:opacity-30 transition-colors flex items-center gap-2"
-              >
-                <ChevronRight className="rotate-180" size={16} />
-                Previous Phase
-              </button>
-              <button
-                onClick={() => setActiveStep(Math.min(steps.length - 1, activeStep + 1))}
-                disabled={activeStep === steps.length - 1}
-                className="text-sm font-bold tracking-wide text-primary hover:text-primary/70 disabled:opacity-30 transition-colors flex items-center gap-2"
-              >
-                Next Phase
-                <ChevronRight size={16} />
-              </button>
+                </div>
+              ))}
             </div>
           </motion.div>
         )}
