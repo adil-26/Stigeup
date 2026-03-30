@@ -31,7 +31,7 @@ export function Navbar() {
               alt="STIGEUP"
               width={214}
               height={52}
-              className="h-8 w-auto object-contain"
+              className="h-8 w-auto object-contain rounded-xl overflow-hidden shadow-sm"
               priority
             />
           </Link>

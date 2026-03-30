@@ -12,6 +12,19 @@ export function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden pt-24">
       <HeroParticles />
+      
+      {/* Background Graphic from Pexels */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-25 mix-blend-lighten">
+        <img
+          src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=2560"
+          alt="Abstract Technology Background"
+          className="w-full h-full object-cover filter contrast-125 saturate-150"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 to-transparent" />
+        <div className="absolute inset-0 bg-background/40 backdrop-blur-[2px]" />
+      </div>
+
       {/* Background glow effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div
