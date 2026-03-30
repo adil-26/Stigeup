@@ -1,13 +1,14 @@
-import type { MetadataRoute } from "next"
+import { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = "https://stigeup.com" // Update domain later
+
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/admin", "/api"],
+      disallow: ["/api/", "/admin/", "/private/"],
     },
-    sitemap: "/sitemap.xml",
+    sitemap: `${baseUrl}/sitemap.xml`,
   }
 }
-

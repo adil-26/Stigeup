@@ -1,29 +1,31 @@
-import type { MetadataRoute } from "next"
-import { getPublishedPosts } from "@/lib/blog-store"
-import { getSiteUrl } from "@/lib/site-url"
+import { MetadataRoute } from "next"
+import { servicesData } from "@/lib/services-content"
+import { caseStudiesData } from "@/lib/case-studies-content"
 
-export const runtime = "nodejs"
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = "https://stigeup.com" // Replace with actual production URL
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = getSiteUrl()
-  const now = new Date().toISOString()
-
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${base}/`, lastModified: now },
-    { url: `${base}/services`, lastModified: now },
-    { url: `${base}/case-studies`, lastModified: now },
-    { url: `${base}/contact`, lastModified: now },
-    { url: `${base}/blog`, lastModified: now },
-    { url: `${base}/privacy-policy`, lastModified: now },
-    { url: `${base}/terms-of-service`, lastModified: now },
-    { url: `${base}/cookie-policy`, lastModified: now },
+  const staticPages: MetadataRoute.Sitemap = [
+    { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1.0 },
+    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/services`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/case-studies`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.5 },
   ]
 
-  const posts = await getPublishedPosts()
-  const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
-    url: `${base}/blog/${p.slug}`,
-    lastModified: p.updatedAt || p.createdAt,
+  const servicePages: MetadataRoute.Sitemap = servicesData.map((service) => ({
+    url: `${baseUrl}/services/${service.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
   }))
 
-  return [...staticRoutes, ...blogRoutes]
+  const caseStudyPages: MetadataRoute.Sitemap = caseStudiesData.map((study) => ({
+    url: `${baseUrl}/case-studies/${study.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }))
+
+  return [...staticPages, ...servicePages, ...caseStudyPages]
 }

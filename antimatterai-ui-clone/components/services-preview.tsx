@@ -1,10 +1,10 @@
 import Link from "next/link"
 import { servicesSection } from "@/lib/homepage-content"
-import { services } from "@/lib/services-content"
+import { servicesData } from "@/lib/services-content"
 import { AnimatedArrow } from "@/components/ui/animated-arrow"
 
 export function ServicesPreview() {
-  const preview = services.slice(0, 3)
+  const preview = servicesData.slice(0, 3)
 
   return (
     <section className="py-24 md:py-32 border-t border-border">
@@ -54,8 +54,8 @@ export function ServicesPreview() {
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    {service.description}
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                    {service.heroSubheadline}
                   </p>
                 </div>
               </article>

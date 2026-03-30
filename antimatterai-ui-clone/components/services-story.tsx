@@ -7,7 +7,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import type { ParticleGlobeInputs } from "@/components/particle-globe"
 import { AnimatedArrow } from "@/components/ui/animated-arrow"
 import { servicesSection } from "@/lib/homepage-content"
-import { services } from "@/lib/services-content"
+import { servicesData } from "@/lib/services-content"
 import { usePageVisible } from "@/hooks/use-page-visible"
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 
@@ -83,9 +83,9 @@ export function ServicesStory() {
       const passed = Math.max(0, STICKY_TOP - rect.top)
       const progress = clamp(passed / scrollable, 0, 1)
 
-      const targetFloat = progress * (services.length - 1)
+      const targetFloat = progress * (servicesData.length - 1)
       currentFloat += (targetFloat - currentFloat) * 0.14
-      const nextIndex = clamp(Math.round(currentFloat), 0, services.length - 1)
+      const nextIndex = clamp(Math.round(currentFloat), 0, servicesData.length - 1)
       inputsRef.current.servicesProgress = progress
       inputsRef.current.activeService = nextIndex
       inputsRef.current.activeServiceFloat = currentFloat
@@ -114,8 +114,8 @@ export function ServicesStory() {
     return () => window.clearTimeout(timeout)
   }, [activeIndex, displayIndex])
 
-  const service = services[displayIndex]
-  const leavingService = leavingIndex === null ? null : services[leavingIndex]
+  const service = servicesData[displayIndex]
+  const leavingService = leavingIndex === null ? null : servicesData[leavingIndex]
   const Icon = service.icon
   const LeavingIcon = leavingService?.icon
 
@@ -136,7 +136,7 @@ export function ServicesStory() {
       id="services"
       ref={sectionRef}
       className="relative py-24 md:py-32"
-      style={{ height: `${services.length * 72}vh` }}
+      style={{ height: `${servicesData.length * 72}vh` }}
       aria-label="Our Services"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -185,7 +185,7 @@ export function ServicesStory() {
                     </div>
 
                     <p className="mt-6 text-sm leading-relaxed text-white/75">
-                      {leavingService.description}
+                      {leavingService.heroSubheadline}
                     </p>
 
                     <div className="mt-7">
@@ -198,14 +198,14 @@ export function ServicesStory() {
                         </p>
                       </div>
                       <div className="space-y-2">
-                        {leavingService.services.map((item) => (
-                          <p key={item} className="text-sm text-white/85">
-                            {item}
+                        {leavingService.products.slice(0, 3).map((item) => (
+                          <p key={item.title} className="text-sm text-white/85">
+                            {item.title}
                           </p>
                         ))}
                       </div>
                       <p className="mt-5 text-xs leading-relaxed text-white/60">
-                        <span className="font-semibold text-white/80">Tools:</span> {leavingService.tools}
+                        <span className="font-semibold text-white/80">Tech:</span> {leavingService.techStack.join(", ")}
                       </p>
                     </div>
 
@@ -250,7 +250,7 @@ export function ServicesStory() {
                   </div>
 
                   <p className="mt-6 text-sm leading-relaxed text-white/75">
-                    {service.description}
+                    {service.heroSubheadline}
                   </p>
 
                   <div className="mt-7">
@@ -261,14 +261,14 @@ export function ServicesStory() {
                       </p>
                     </div>
                     <div className="space-y-2">
-                      {service.services.map((item) => (
-                        <p key={item} className="text-sm text-white/85">
-                          {item}
+                      {service.products.slice(0, 3).map((item) => (
+                        <p key={item.title} className="text-sm text-white/85">
+                          {item.title}
                         </p>
                       ))}
                     </div>
                     <p className="mt-5 text-xs leading-relaxed text-white/60">
-                      <span className="font-semibold text-white/80">Tools:</span> {service.tools}
+                      <span className="font-semibold text-white/80">Tech:</span> {service.techStack.join(", ")}
                     </p>
                   </div>
 
@@ -303,7 +303,7 @@ export function ServicesStory() {
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 lg:hidden">
         <div className="space-y-3">
-          {services.map((serviceItem) => (
+          {servicesData.map((serviceItem) => (
             <article
               key={serviceItem.number}
               className="rounded-2xl border border-border bg-card p-5"
@@ -313,17 +313,17 @@ export function ServicesStory() {
                 <ArrowUpRight className="h-5 w-5 text-muted-foreground" />
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                {serviceItem.description}
+                {serviceItem.heroSubheadline}
               </p>
               <div className="mt-4 space-y-1">
-                {serviceItem.services.map((item) => (
-                  <p key={item} className="text-sm text-foreground/90">
-                    {item}
+                {serviceItem.products.slice(0, 3).map((item) => (
+                  <p key={item.title} className="text-sm text-foreground/90">
+                    {item.title}
                   </p>
                 ))}
               </div>
               <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                <span className="font-semibold text-foreground/90">Tools:</span> {serviceItem.tools}
+                <span className="font-semibold text-foreground/90">Tech:</span> {serviceItem.techStack.join(", ")}
               </p>
             </article>
           ))}

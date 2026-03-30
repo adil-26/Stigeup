@@ -5,7 +5,7 @@ import {
   ArrowUpRight,
 } from "lucide-react"
 import { servicesSection } from "@/lib/homepage-content"
-import { services } from "@/lib/services-content"
+import { servicesData } from "@/lib/services-content"
 
 const SLIDE_WIDTH = 620
 const ACTIVE_WIDTH = 620
@@ -38,9 +38,9 @@ export function Services() {
     }
   }, [])
 
-  const slidePosition = progress * (services.length - 1)
+  const slidePosition = progress * (servicesData.length - 1)
   const activeIndex = useMemo(() => {
-    return Math.max(0, Math.min(services.length - 1, Math.round(slidePosition)))
+    return Math.max(0, Math.min(servicesData.length - 1, Math.round(slidePosition)))
   }, [slidePosition])
   const trackX = -activeIndex * (SLIDE_WIDTH + CARD_GAP)
 
@@ -51,7 +51,7 @@ export function Services() {
         ref={sectionRef}
         data-active-service={activeIndex}
         className="relative hidden lg:block"
-        style={{ height: `${services.length * 72}vh` }}
+        style={{ height: `${servicesData.length * 72}vh` }}
       >
         <div className="sticky top-16 h-[calc(100vh-64px)] flex items-center">
           <div className="mx-auto w-full max-w-[1500px] px-6">
@@ -76,7 +76,7 @@ export function Services() {
                       transition: "transform 240ms cubic-bezier(0.22, 1, 0.36, 1)",
                     }}
                   >
-                    {services.map((service, index) => {
+                    {servicesData.map((service, index) => {
                       const Icon = service.icon
                       const isActive = index === activeIndex
                       return (
@@ -132,8 +132,8 @@ export function Services() {
 
                               {isActive ? (
                                 <>
-                                  <p className="mt-7 text-base leading-relaxed text-foreground/90">
-                                    {service.description}
+                                  <p className="mt-7 text-base leading-relaxed text-foreground/90 line-clamp-4">
+                                    {service.heroSubheadline}
                                   </p>
                                   <div className="mt-auto pt-6">
                                     <div className="mb-3">
@@ -142,19 +142,19 @@ export function Services() {
                                     <p className="text-sm uppercase tracking-[0.08em] text-foreground/60 mb-2">
                                       Services
                                     </p>
-                                    {service.services.map((item) => (
+                                    {service.products.slice(0, 3).map((item) => (
                                       <p
-                                        key={item}
+                                        key={item.title}
                                         className="text-[15px] leading-relaxed text-foreground/85"
                                       >
-                                        {item}
+                                        {item.title}
                                       </p>
                                     ))}
                                     <p className="mt-4 text-xs leading-relaxed text-foreground/70">
                                       <span className="font-semibold text-foreground/90">
-                                        Tools:
+                                        Tech:
                                       </span>{" "}
-                                      {service.tools}
+                                      {service.techStack.join(", ")}
                                     </p>
                                   </div>
                                 </>
@@ -187,7 +187,7 @@ export function Services() {
             {servicesSection.description}
           </p>
           <div className="space-y-3">
-            {services.map((service, index) => (
+            {servicesData.map((service, index) => (
               <article
                 key={service.number}
                 data-service-index={index}
@@ -198,18 +198,18 @@ export function Services() {
                   <ArrowUpRight className="h-5 w-5 text-muted-foreground" />
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  {service.description}
+                  {service.heroSubheadline}
                 </p>
                 <div className="mt-4 space-y-1">
-                  {service.services.map((item) => (
-                    <p key={item} className="text-sm text-foreground/90">
-                      {item}
+                  {service.products.slice(0, 3).map((item) => (
+                    <p key={item.title} className="text-sm text-foreground/90">
+                      {item.title}
                     </p>
                   ))}
                 </div>
                 <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                  <span className="font-semibold text-foreground/90">Tools:</span>{" "}
-                  {service.tools}
+                  <span className="font-semibold text-foreground/90">Tech:</span>{" "}
+                  {service.techStack.join(", ")}
                 </p>
               </article>
             ))}

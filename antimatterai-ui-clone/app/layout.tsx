@@ -51,6 +51,23 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "STIGEUP",
+              "url": "https://stigeup.com",
+              "logo": "https://stigeup.com/stigeup-logo-main.png",
+              "description": "High-performance web, app, and AI development agency.",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              }
+            })
+          }}
+        />
         {children}
         <CookieBanner />
       </body>

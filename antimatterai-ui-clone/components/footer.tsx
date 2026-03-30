@@ -4,19 +4,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
 import { useEffect, useState } from "react"
-
-const expertiseLinks = [
-  "UI / UX Design",
-  "Web & E-commerce Platforms",
-  "Enterprise Software (CRM/ERP)",
-  "Mobile App Development",
-  "AI Agents & Automation",
-  "SEO & GEO Optimization",
-]
+import { servicesData } from "@/lib/services-content"
 
 const companyLinks = [
-  { label: "About us", href: "#" },
-  { label: "Case studies", href: "#case-studies" },
+  { label: "About us", href: "/about" },
+  { label: "Case studies", href: "/case-studies" },
   { label: "Contact us", href: "/contact" },
   { label: "Insights / Blog", href: "/blog" },
   { label: "Careers", href: "#" },
@@ -82,7 +74,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm text-muted-foreground">
-              Based in India, serving clients digitally.
+              Based in India, engineered for global dominance.
             </p>
             <div className="mt-6">
               <LiveClock />
@@ -94,13 +86,13 @@ export function Footer() {
               Expertise
             </h3>
             <ul className="space-y-3">
-              {expertiseLinks.map((link) => (
-                <li key={link}>
+              {servicesData.map((service) => (
+                <li key={service.slug}>
                   <Link
-                    href="#services"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    href={`/services/${service.slug}`}
+                    className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 inline-flex transition-all"
                   >
-                    {link}
+                    {service.title}
                   </Link>
                 </li>
               ))}
@@ -116,7 +108,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 inline-flex transition-all"
                   >
                     {link.label}
                   </Link>
@@ -135,11 +127,16 @@ export function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/70 text-muted-foreground transition-colors hover:text-foreground hover:border-muted-foreground/50"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/70 text-muted-foreground transition-all hover:text-foreground hover:border-muted-foreground/50 hover:scale-110"
                 >
                   <Icon size={16} />
                 </Link>
               ))}
+            </div>
+            <div className="mt-8">
+              <Link href="/contact" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary/10 border border-primary/20 px-4 py-2 text-sm font-medium text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
+                Start a Project
+              </Link>
             </div>
           </div>
         </div>
@@ -148,7 +145,7 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            &copy; 2026 StigeUp. All rights reserved.
+            &copy; {new Date().getFullYear()} StigeUp. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <Link
@@ -162,12 +159,6 @@ export function Footer() {
               className="text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
               Terms of Service
-            </Link>
-            <Link
-              href="/cookie-policy"
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Cookie Policy
             </Link>
           </div>
         </div>

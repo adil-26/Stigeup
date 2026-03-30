@@ -1,0 +1,15 @@
+﻿app/about/page.tsx(8,10): error TS2305: Module '"@/lib/services-content"' has no exported member 'services'.
+components/services-preview.tsx(3,10): error TS2305: Module '"@/lib/services-content"' has no exported member 'services'.
+components/services-preview.tsx(31,25): error TS7006: Parameter 'service' implicitly has an 'any' type.
+components/services-story.tsx(10,10): error TS2305: Module '"@/lib/services-content"' has no exported member 'services'.
+components/services-story.tsx(201,55): error TS7006: Parameter 'item' implicitly has an 'any' type.
+components/services-story.tsx(264,46): error TS7006: Parameter 'item' implicitly has an 'any' type.
+components/services-story.tsx(306,26): error TS7006: Parameter 'serviceItem' implicitly has an 'any' type.
+components/services-story.tsx(319,44): error TS7006: Parameter 'item' implicitly has an 'any' type.
+components/services.tsx(8,10): error TS2305: Module '"@/lib/services-content"' has no exported member 'services'.
+components/services.tsx(79,36): error TS7006: Parameter 'service' implicitly has an 'any' type.
+components/services.tsx(79,45): error TS7006: Parameter 'index' implicitly has an 'any' type.
+components/services.tsx(145,60): error TS7006: Parameter 'item' implicitly has an 'any' type.
+components/services.tsx(190,28): error TS7006: Parameter 'service' implicitly has an 'any' type.
+components/services.tsx(190,37): error TS7006: Parameter 'index' implicitly has an 'any' type.
+components/services.tsx(204,42): error TS7006: Parameter 'item' implicitly has an 'any' type.
