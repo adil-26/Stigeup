@@ -1,13 +1,15 @@
 {
   "posts": [
     {
-      "slug": "welcome",
+      "slug": "Hi Nikhil ",
       "title": "Welcome",
       "excerpt": "A starter post you can edit or delete from /admin.",
       "content": "This is your first blog post.\n\nEdit it in /admin and publish more posts.",
       "coverImage": "/case-studies/feature.svg",
       "coverImageAlt": "Featured illustration",
-      "tags": ["Launch"],
+      "tags": [
+        "Launch"
+      ],
       "published": true,
       "createdAt": "2026-03-19T00:00:00.000Z",
       "updatedAt": "2026-03-19T00:00:00.000Z"
