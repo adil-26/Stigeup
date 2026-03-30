@@ -162,32 +162,43 @@ export function ServiceProcessSection({
                   <button
                     onClick={() => setActiveStep(i)}
                     className={`
-                      flex items-center gap-3 px-5 py-2.5 rounded-full text-sm font-bold tracking-wide
-                      border transition-all duration-300 whitespace-nowrap
+                      relative flex items-center gap-3 px-5 py-2.5 rounded-full text-sm font-bold tracking-wide
+                      border transition-colors duration-300 whitespace-nowrap overflow-hidden
                       ${
                         activeStep === i
-                          ? "bg-primary border-primary text-primary-foreground shadow-[0_0_20px_rgba(255,100,0,0.4)] scale-105"
+                          ? "border-primary/50 text-white shadow-[0_0_30px_rgba(255,100,0,0.3)] scale-105"
                           : i < activeStep
                           ? "border-primary/40 text-primary bg-primary/10 hover:bg-primary/20"
                           : "border-white/10 text-muted-foreground hover:border-white/30 hover:text-white bg-black/50 backdrop-blur-md"
                       }
                     `}
                   >
-                    {i < activeStep ? (
-                      <CheckCircle2 size={16} className="text-primary" />
-                    ) : (
-                      <span
-                        className={`w-6 h-6 rounded-full border flex items-center justify-center font-heading text-xs
-                        ${
-                          activeStep === i
-                            ? "border-primary-foreground text-primary-foreground bg-primary-foreground/20"
-                            : "border-current opacity-60"
-                        }`}
-                      >
-                        {step.number}
-                      </span>
+                    {/* Active State Background Glide */}
+                    {activeStep === i && (
+                      <motion.div
+                        layoutId="active-step-pill"
+                        className="absolute inset-0 bg-primary backdrop-blur-sm z-0"
+                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                      />
                     )}
-                    {step.title}
+                    
+                    <div className="relative z-10 flex items-center gap-3">
+                      {i < activeStep ? (
+                        <CheckCircle2 size={16} className="text-primary" />
+                      ) : (
+                        <span
+                          className={`w-6 h-6 rounded-full border flex items-center justify-center font-heading text-xs
+                          ${
+                            activeStep === i
+                              ? "border-white text-white bg-white/20"
+                              : "border-current opacity-60"
+                          }`}
+                        >
+                          {step.number}
+                        </span>
+                      )}
+                      <span className={activeStep === i ? "text-white" : ""}>{step.title}</span>
+                    </div>
                   </button>
                   {i < steps.length - 1 && (
                     <motion.div 
