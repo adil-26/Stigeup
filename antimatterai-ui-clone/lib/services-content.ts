@@ -239,6 +239,52 @@ export const servicesData: ServicePageContent[] = [
         deliverables: ["Lighthouse audit report", "Screaming Frog crawl analysis", "Security headers review", "Prioritized fix list"],
         timeline: "1–2 weeks"
       }
+    ],
+    processSteps: [
+      {
+        number: "01",
+        title: "Discovery & Architecture",
+        description: "We audit existing infrastructure, map out API endpoints, and design the technical foundation to ensure absolute scalability from day one.",
+        deliverables: ["Product Roadmap", "System Architecture", "API Drafts"],
+      },
+      {
+        number: "02",
+        title: "UI/UX & Interactive Prototyping",
+        description: "Executing the visual language in high-fidelity Figma files while establishing the React component library hierarchy.",
+        deliverables: ["Figma Mockups", "Responsive Breakpoints", "Design System"],
+      },
+      {
+        number: "03",
+        title: "Core Engineering & CMS",
+        description: "Writing extremely clean, highly-typed TypeScript code on Next.js, and integrating robust Headless CMS engines.",
+        deliverables: ["Next.js Frontend", "Sanity/Contentful Backend", "API integrations"],
+      },
+      {
+        number: "04",
+        title: "Performance & Technical QA",
+        description: "Conducting rigorous load testing and Lighthouse optimization so your site hits 99+ Core Web Vitals.",
+        deliverables: ["Audit Reports", "End-to-End Test Suite", "Accessibility Pass"],
+      },
+      {
+        number: "05",
+        title: "Deployment & Scale",
+        description: "Deploying code cleanly to Vercel/AWS Edge networks for instantaneous load times across global CDNs.",
+        deliverables: ["Edge Deployment", "CI/CD Pipelines", "Analytics Integration"],
+      },
+    ],
+    toolPhases: [
+      { phase: "Discovery", tools: ["Figma", "Notion", "Loom"] },
+      { phase: "Architecture", tools: ["Whimsical", "Contentful", "Sanity"] },
+      { phase: "UI Engineering", tools: ["Next.js", "Tailwind CSS", "React"] },
+      { phase: "QA & SEO", tools: ["Lighthouse", "Semrush", "Playwright"] },
+      { phase: "Deployment", tools: ["Vercel", "Cloudflare", "AWS"] },
+    ],
+    timelineBars: [
+      { label: "Discovery & Architecture", weeks: "1–2 wks", left: "0%", width: "20%" },
+      { label: "Design & Content Modeling", weeks: "2–4 wks", left: "20%", width: "30%" },
+      { label: "Frontend Engineering", weeks: "3–6 wks", left: "50%", width: "35%" },
+      { label: "QA & SEO Audits", weeks: "1–2 wks", left: "85%", width: "10%" },
+      { label: "Launch & Analytics", weeks: "1 wk", left: "95%", width: "5%", accent: true },
     ]
   },
   {
@@ -306,6 +352,52 @@ export const servicesData: ServicePageContent[] = [
         deliverables: ["AWS infrastructure setup", "CI/CD pipeline", "Environment configuration", "Monitoring (Grafana/CloudWatch)", "Runbook"],
         timeline: "2–4 weeks"
       }
+    ],
+    processSteps: [
+      {
+        number: "01",
+        title: "Requirements & System Design",
+        description: "Analyzing the deep business requirements, identifying bottlenecks, and drawing up a master database schema.",
+        deliverables: ["Data Schema", "System Flow Model", "Tech Stack Finalization"],
+      },
+      {
+        number: "02",
+        title: "Database Architecture & Logic",
+        description: "Engineering the foundational ORM models, establishing security layers, and setting up multi-tenant logic (if SaaS).",
+        deliverables: ["PostgreSQL DB", "Prisma/Drizzle Setup", "Authentication Layer"],
+      },
+      {
+        number: "03",
+        title: "Agile Sprints & Core Engine",
+        description: "Iterative two-week sprints. We ship working features rapidly, relying on comprehensive test coverage and CI/CD.",
+        deliverables: ["Working V1 APIs", "Service Modules", "Frontend Connectivity"],
+      },
+      {
+        number: "04",
+        title: "Security Auditing & UAT",
+        description: "Hardening endpoints against OWASP standards, conducting load tests with real data, and verifying logic with stakeholders.",
+        deliverables: ["Penetration Test Logs", "Stress Test Approvals", "UAT Sign-off"],
+      },
+      {
+        number: "05",
+        title: "DevOps & Cloud Infrastructure",
+        description: "Scaling the final application onto Docker/Kubernetes container orchestrations inside secure AWS VPCs.",
+        deliverables: ["Docker Containers", "AWS VPC configuration", "SLA Monitors"],
+      },
+    ],
+    toolPhases: [
+      { phase: "System Design", tools: ["Lucidchart", "OpenAPI", "Swagger"] },
+      { phase: "Architecture", tools: ["PostgreSQL", "Prisma", "Redis"] },
+      { phase: "Core Engine", tools: ["Node.js", "Python", "Docker"] },
+      { phase: "QA & Security", tools: ["Jest", "PostHog", "OWASP ZAP"] },
+      { phase: "Cloud Scale", tools: ["AWS", "Kubernetes", "Terraform"] },
+    ],
+    timelineBars: [
+      { label: "System Architecture", weeks: "2–3 wks", left: "0%", width: "15%" },
+      { label: "API & DB Modeling", weeks: "2–4 wks", left: "15%", width: "20%" },
+      { label: "Core Engine Sprints", weeks: "6–10 wks", left: "35%", width: "40%" },
+      { label: "Security & Load Testing", weeks: "2–3 wks", left: "75%", width: "15%" },
+      { label: "Cloud Deployment", weeks: "1–2 wks", left: "90%", width: "10%", accent: true },
     ]
   },
   {
@@ -373,6 +465,52 @@ export const servicesData: ServicePageContent[] = [
         deliverables: ["Monthly performance report", "Bug fixes", "OS compatibility updates", "Feature development hours"],
         timeline: "Ongoing monthly retainer"
       }
+    ],
+    processSteps: [
+      {
+        number: "01",
+        title: "App Strategy & UX Mapping",
+        description: "Pinpointing exact mobile user flows, reducing friction, and mapping the app directly to Apple HIG and Google Material guidelines.",
+        deliverables: ["Mobile Wireframes", "Touch Target Maps", "Monetization Draft"],
+      },
+      {
+        number: "02",
+        title: "Cross-Platform Architecture",
+        description: "Configuring the root monorepo (Flutter/React Native), linking push notification services, and connecting to the remote backend API.",
+        deliverables: ["Base Repository", "Auth Integration", "State Management"],
+      },
+      {
+        number: "03",
+        title: "Native Component Engineering",
+        description: "Building hyper-smooth interactions, camera features, offline synchronization (SQLite/WatermelonDB), and cache pipelines.",
+        deliverables: ["Core UI Code", "Offline Mode Enabled", "API Consumption"],
+      },
+      {
+        number: "04",
+        title: "Beta Testing & Vitals",
+        description: "Distributing builds via TestFlight and Google Play Console. Measuring frame drops and battery drain metrics.",
+        deliverables: ["TestFlight Invites", "Crashlytics Dash", "Beta Feedback App"],
+      },
+      {
+        number: "05",
+        title: "App Store Strategy & Launch",
+        description: "Configuring provisioning profiles, ASO (App Store Optimization), generating privacy compliance, and hitting the launch button.",
+        deliverables: ["Store Listings", "Screenshots Package", "Final Live App"],
+      },
+    ],
+    toolPhases: [
+      { phase: "UX Mapping", tools: ["Figma", "FigJam", "Apple HIG"] },
+      { phase: "Architecture", tools: ["Dart", "Firebase", "Supabase"] },
+      { phase: "Engineering", tools: ["Flutter", "React Native", "Swift"] },
+      { phase: "Beta & QA", tools: ["TestFlight", "Fastlane", "Crashlytics"] },
+      { phase: "Analytics", tools: ["RevenueCat", "OneSignal", "Mixpanel"] },
+    ],
+    timelineBars: [
+      { label: "App Strategy & UX", weeks: "1–3 wks", left: "0%", width: "20%" },
+      { label: "API & Backend Init", weeks: "2–4 wks", left: "20%", width: "20%" },
+      { label: "Native UI & Logic", weeks: "4–8 wks", left: "40%", width: "40%" },
+      { label: "TestFlight Beta", weeks: "1–2 wks", left: "80%", width: "10%" },
+      { label: "Store Submission", weeks: "1 wk", left: "90%", width: "10%", accent: true },
     ]
   },
   {
@@ -440,6 +578,52 @@ export const servicesData: ServicePageContent[] = [
         deliverables: ["RAG architecture", "Vector database setup (Pinecone/Weaviate)", "Document ingestion pipeline", "API endpoint"],
         timeline: "4–8 weeks"
       }
+    ],
+    processSteps: [
+      {
+        number: "01",
+        title: "Conversational UX & Scripting",
+        description: "Designing the logical decision trees, determining the AI's persona, and mapping how to gracefully handle conversational dead-ends.",
+        deliverables: ["Persona Guide", "Fail-safe Trees", "Voiceflow Graphs"],
+      },
+      {
+        number: "02",
+        title: "Knowledge Base Ingestion",
+        description: "Executing complex ETL pipelines to ingest your company's PDFs, scraped URLs, and databases into a vector subspace (RAG).",
+        deliverables: ["Vector DB Init", "Chunking Strategy", "Semantic Search"],
+      },
+      {
+        number: "03",
+        title: "Speech Synthesis & Tuning",
+        description: "Wiring the LLM to ultra-realistic voice models (Vapi/ElevenLabs). Tweaking latency, interruption logic, and emotional cadence.",
+        deliverables: ["Voice Clone Setup", "Latency Tuning", "Interruption Config"],
+      },
+      {
+        number: "04",
+        title: "Edge Case & Prompt Hardening",
+        description: "Attacking the bot with prompt injections, attempting to make it break character, and solidifying its instructions.",
+        deliverables: ["Red-Team Reports", "Hardened Prompts", "Safety Guardrails"],
+      },
+      {
+        number: "05",
+        title: "Deployment & CRM Handoff",
+        description: "Mounting the bot onto Twilio/Web widgets and hooking up JSON webhooks directly into your CRM or Calendly.",
+        deliverables: ["Twilio Number Binding", "Zapier Webhooks", "Production URL"],
+      },
+    ],
+    toolPhases: [
+      { phase: "Scripting & Flow", tools: ["Voiceflow", "Dialogflow", "Miro"] },
+      { phase: "Intelligence", tools: ["OpenAI", "Pinecone", "LangChain"] },
+      { phase: "Voice Tuning", tools: ["Vapi", "ElevenLabs", "PlayHT"] },
+      { phase: "Integration", tools: ["Twilio", "Zapier", "Make"] },
+      { phase: "Monitoring", tools: ["LangSmith", "Datadog", "Helicone"] },
+    ],
+    timelineBars: [
+      { label: "Conversational Flow", weeks: "1–2 wks", left: "0%", width: "25%" },
+      { label: "RAG & Knowledge Base", weeks: "1–2 wks", left: "25%", width: "25%" },
+      { label: "Prototype & Tuning", weeks: "1–2 wks", left: "50%", width: "25%" },
+      { label: "Edge Case Hardening", weeks: "1 wk", left: "75%", width: "15%" },
+      { label: "CRM & Live Launch", weeks: "1 wk", left: "90%", width: "10%", accent: true },
     ]
   },
   {
@@ -507,6 +691,52 @@ export const servicesData: ServicePageContent[] = [
         deliverables: ["Predictive model", "Feature engineering pipeline", "BI dashboard (or API)", "Business impact analysis"],
         timeline: "4–10 weeks"
       }
+    ],
+    processSteps: [
+      {
+        number: "01",
+        title: "Data Pipeline & Audit",
+        description: "Investigating the sheer quality and volume of your historical data. We set up raw ingest pipelines to capture pure structured flows.",
+        deliverables: ["Feasibility Report", "Apache Kafka Setup", "Data Sanitization"],
+      },
+      {
+        number: "02",
+        title: "Model Selection",
+        description: "Deciding strictly between lightweight statistical regressors or deep Transformer/CNN neural networks based on compute budgets.",
+        deliverables: ["Architecture Blueprint", "Compute Estimates", "Base LLM Choice"],
+      },
+      {
+        number: "03",
+        title: "Training & Validation",
+        description: "Feeding massive cleaned datasets into PyTorch/TensorFlow. Utilizing distinct training, testing, and validation splits to prevent overfitting.",
+        deliverables: ["Loss Curve Dash", "Initial Epoch Checks", "Test Set Metrics"],
+      },
+      {
+        number: "04",
+        title: "Inference Optimization",
+        description: "Quantizing the heavy model from FP32 to INT8 to reduce memory footprint and latency so you don't burn thousands on GPU costs.",
+        deliverables: ["ONNX Export", "Latency Profiles", "Cost Analysis"],
+      },
+      {
+        number: "05",
+        title: "Secure MLOps Deployment",
+        description: "Packaging the model into a secure container and wrapping it in an API endpoint, fully monitored for data drift over time.",
+        deliverables: ["AWS SageMaker/EC2", "Model Drift Tracker", "REST API Docs"],
+      },
+    ],
+    toolPhases: [
+      { phase: "Data Pipeline", tools: ["Apache Kafka", "DVC", "Airflow"] },
+      { phase: "Architecture", tools: ["Hugging Face", "PyTorch", "TensorFlow"] },
+      { phase: "Training", tools: ["MLflow", "Weights & Biases", "CUDA"] },
+      { phase: "Optimization", tools: ["ONNX", "TensorRT", "DeepSpeed"] },
+      { phase: "Deployment", tools: ["AWS SageMaker", "Kubernetes", "Docker"] },
+    ],
+    timelineBars: [
+      { label: "Data Auditing", weeks: "2–4 wks", left: "0%", width: "25%" },
+      { label: "Model Architecture", weeks: "2–3 wks", left: "25%", width: "20%" },
+      { label: "Training & Validation", weeks: "4–8 wks", left: "45%", width: "35%" },
+      { label: "End-Point Tuning", weeks: "1–2 wks", left: "80%", width: "10%" },
+      { label: "MLOps Production", weeks: "1 wk", left: "90%", width: "10%", accent: true },
     ]
   },
   {
@@ -574,6 +804,52 @@ export const servicesData: ServicePageContent[] = [
         deliverables: ["GA4 setup", "Search Console configuration", "Rank tracking dashboard", "Monthly performance reports", "Anomaly alerts"],
         timeline: "1–2 weeks"
       }
+    ],
+    processSteps: [
+      {
+        number: "01",
+        title: "Technical & Semantic Audit",
+        description: "An exhaustive crawl using screaming frog to destroy redirect loops, identify canonical errors, and establish semantic baseline structures.",
+        deliverables: ["Crawl Defect Report", "JS Render Analysis", "Speed Audit"],
+      },
+      {
+        number: "02",
+        title: "Knowledge Graph Engine",
+        description: "Injecting robust JSON-LD schema (Organization, Article, FAQ) directly into the Next.js layouts to lock in your entity graph with Google.",
+        deliverables: ["Custom Schema.org", "GMB Optimization", "Entity Mapping"],
+      },
+      {
+        number: "03",
+        title: "Content Pillar Architecture",
+        description: "Scraping intent variables from search algorithms to map complete topical hubs. We don't guess — we write strictly to rank.",
+        deliverables: ["Topical Map", "Intent Strategy", "Brief Generation"],
+      },
+      {
+        number: "04",
+        title: "Citation & Backlink Outreach",
+        description: "Building strict, white-hat link velocity through PR pitching, high-domain placements, and active unlinked mention reclamation.",
+        deliverables: ["Domain Prospect List", "Pitch Templates", "Live Anchor Text"],
+      },
+      {
+        number: "05",
+        title: "GEO Tracking & Iteration",
+        description: "Tracking your answers across ChatGPT, SearchGPT, and Perplexity using advanced brand signal monitors and custom dashboards.",
+        deliverables: ["GEO Tracker DB", "Looker Studio Dash", "Ongoing Reporting"],
+      },
+    ],
+    toolPhases: [
+      { phase: "Technical Audit", tools: ["Screaming Frog", "Ahrefs", "GSC"] },
+      { phase: "Knowledge Graph", tools: ["Schema.org", "JSON-LD", "Clearscope"] },
+      { phase: "Architecture", tools: ["Surfer SEO", "Notion", "Figma"] },
+      { phase: "Outreach", tools: ["Pitchbox", "Hunter", "BuzzStream"] },
+      { phase: "Tracking", tools: ["GA4", "Looker Studio", "Perplexity"] },
+    ],
+    timelineBars: [
+      { label: "Deep Technical Audit", weeks: "1–2 wks", left: "0%", width: "20%" },
+      { label: "Schema & Architecture", weeks: "2–3 wks", left: "20%", width: "30%" },
+      { label: "Content Foundation", weeks: "2–4 wks", left: "50%", width: "30%" },
+      { label: "Link Velocity Setup", weeks: "1–2 wks", left: "80%", width: "10%" },
+      { label: "Reporting & Growth", weeks: "Ongoing", left: "90%", width: "10%", accent: true },
     ]
   }
 ]
