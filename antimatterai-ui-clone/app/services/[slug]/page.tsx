@@ -32,6 +32,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+export async function generateStaticParams() {
+  return servicesData.map((service) => ({
+    slug: service.slug,
+  }))
+}
+
 export default async function ServicePage({ params }: Props) {
   const resolvedParams = await params
   const service = servicesData.find((s) => s.slug === resolvedParams.slug)

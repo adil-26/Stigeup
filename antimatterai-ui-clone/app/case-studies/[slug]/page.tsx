@@ -27,6 +27,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+export async function generateStaticParams() {
+  return caseStudiesData.map((study) => ({
+    slug: study.slug,
+  }))
+}
+
 export default async function CaseStudyPage({ params }: Props) {
   const resolvedParams = await params
   const study = caseStudiesData.find((cs) => cs.slug === resolvedParams.slug)
