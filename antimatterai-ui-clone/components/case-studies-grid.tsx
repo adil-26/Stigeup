@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react"
 import { caseStudiesData } from "@/lib/case-studies-content"
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 import { AnimatedArrow } from "@/components/ui/animated-arrow"
+import { AnimatedHeroText } from "@/components/ui/animated-hero-text"
 
 export function CaseStudiesGrid() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -43,9 +44,10 @@ export function CaseStudiesGrid() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="max-w-3xl">
-          <h1 className="case-studies-title font-heading text-4xl font-semibold text-foreground sm:text-5xl md:text-6xl">
-            Architected for Dominance
-          </h1>
+          <AnimatedHeroText 
+            className="case-studies-title font-heading text-4xl font-semibold text-foreground sm:text-5xl md:text-6xl"
+            lines={[{ text: "Architected for Dominance" }]} 
+          />
           <p className="case-studies-desc mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
             We don&apos;t just write code — we engineer market leaders. Every project below was built to solve a real business problem, dominate a specific market, and generate measurable results.
           </p>

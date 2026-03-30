@@ -5,6 +5,7 @@ import { AnimatedArrow } from "@/components/ui/animated-arrow"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ArrowUpRight } from "lucide-react"
+import { AnimatedHeroText } from "@/components/ui/animated-hero-text"
 export const metadata: Metadata = {
   title: "About STIGEUP | Elite Web, App & AI Engineering Agency",
   description: "STIGEUP is a high-performance digital engineering agency building custom websites, mobile apps, AI systems, and automation workflows for businesses that refuse to be average.",
@@ -87,10 +88,13 @@ export default function AboutPage() {
         
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-4xl">
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl font-semibold leading-tight tracking-tight text-foreground">
-              We Don&apos;t Build Websites.<br />
-              <span className="text-white/60">We Build Competitive Advantages.</span>
-            </h1>
+            <AnimatedHeroText 
+              className="font-heading text-4xl sm:text-5xl md:text-7xl font-semibold leading-tight tracking-tight text-foreground"
+              lines={[
+                { text: "We Don't Build Websites." },
+                { text: "We Build Competitive Advantages.", className: "text-white/60" }
+              ]} 
+            />
             <p className="mt-8 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl">
               STIGEUP is a full-spectrum digital engineering agency. We turn complex business problems into custom software, high-performance web platforms, and autonomous AI systems — engineered to make your competitors irrelevant.
             </p>

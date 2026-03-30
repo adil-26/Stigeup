@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { AnimatedHeroText } from "@/components/ui/animated-hero-text"
 
 export const metadata: Metadata = {
   title: "Contact STIGEUP | Start Your Web, App or AI Project",
@@ -44,9 +45,13 @@ export default function ContactPage() {
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
             <div>
-              <h1 className="font-heading text-4xl font-semibold text-foreground sm:text-5xl md:text-6xl leading-[1.15]">
-                Let&apos;s Build Your Next<br />Big Advantage.
-              </h1>
+              <AnimatedHeroText 
+                className="font-heading text-4xl font-semibold text-foreground sm:text-5xl md:text-6xl leading-[1.15]"
+                lines={[
+                  { text: "Let's Build Your Next" },
+                  { text: "Big Advantage." }
+                ]} 
+              />
               <p className="mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg max-w-md">
                 Tell us what you&apos;re building. We&apos;ll map out the fastest path from idea to a system that dominates your market.
               </p>

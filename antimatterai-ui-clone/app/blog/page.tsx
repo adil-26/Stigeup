@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer"
 import { CTA } from "@/components/cta"
 import { getPublishedPosts } from "@/lib/blog-store"
 import { AnimatedArrow } from "@/components/ui/animated-arrow"
+import { AnimatedHeroText } from "@/components/ui/animated-hero-text"
 
 export const dynamic = "force-dynamic"
 
@@ -31,10 +32,13 @@ export default async function BlogPage() {
           <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-6">
             Engineering Journal
           </p>
-          <h1 className="font-heading text-5xl md:text-8xl font-black text-white leading-[1.1] tracking-tighter">
-            Insights &<br className="hidden md:block" />
-            <span className="text-white/30"> Architecture.</span>
-          </h1>
+          <AnimatedHeroText 
+            className="font-heading text-5xl md:text-8xl font-black text-white leading-[1.1] tracking-tighter"
+            lines={[
+               { text: "Insights &" },
+               { text: "Architecture.", className: "text-white/30" }
+            ]} 
+          />
           <p className="mt-8 text-lg md:text-2xl leading-relaxed text-muted-foreground max-w-3xl mx-auto">
             Deep technical dives into how we design, build, and scale high-performance systems for the world&apos;s most demanding environments.
           </p>

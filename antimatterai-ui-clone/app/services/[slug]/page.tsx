@@ -6,6 +6,7 @@ import { caseStudiesData } from "@/lib/case-studies-content"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { AnimatedArrow } from "@/components/ui/animated-arrow"
+import { AnimatedHeroText } from "@/components/ui/animated-hero-text"
 import {
   Accordion,
   AccordionContent,
@@ -62,9 +63,10 @@ export default async function ServicePage({ params }: Props) {
             <service.icon className="w-4 h-4" />
             Service {service.number}
           </div>
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl font-semibold leading-tight tracking-tight max-w-5xl mx-auto text-white">
-            {service.heroHeadline}
-          </h1>
+          <AnimatedHeroText 
+            className="font-heading text-4xl sm:text-5xl md:text-7xl font-semibold leading-tight tracking-tight max-w-5xl mx-auto text-white"
+            lines={[{ text: service.heroHeadline }]} 
+          />
           <p className="mt-8 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
             {service.heroSubheadline}
           </p>
