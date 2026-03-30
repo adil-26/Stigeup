@@ -13,6 +13,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { CheckCircle2, ArrowRight } from "lucide-react"
+import { ServiceProcessSection } from "@/components/service-process-section"
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -162,55 +163,64 @@ export default async function ServicePage({ params }: Props) {
         </div>
       </section>
 
-      {/* SECTION 5: OUR PROCESS */}
-      <section className="py-20 md:py-28 border-b border-white/5">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-heading text-3xl font-semibold md:text-5xl">Our Process</h2>
+      {service.processSteps && service.toolPhases && service.timelineBars ? (
+        <ServiceProcessSection
+          steps={service.processSteps}
+          products={service.products}
+          toolPhases={service.toolPhases}
+          timelineBars={service.timelineBars}
+        />
+      ) : (
+        /* FALLBACK STATIC PROCESS SECTION IF DATA IS NOT YET PROVIDED */
+        <section className="py-20 md:py-28 border-b border-white/5">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="font-heading text-3xl font-semibold md:text-5xl">Our Process</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+              <div className="relative">
+                <div className="hidden md:block absolute top-6 left-1/2 w-full h-[1px] bg-white/10" />
+                <div className="relative z-10 w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
+                  <span className="text-primary font-medium">01</span>
+                </div>
+                <h3 className="font-heading text-lg font-semibold text-white mb-2 text-center md:text-left">Discovery Phase</h3>
+                <p className="text-sm text-muted-foreground text-center md:text-left">Deep dive into your business model and technical requirements.</p>
+              </div>
+              <div className="relative">
+                <div className="hidden md:block absolute top-6 left-1/2 w-full h-[1px] bg-white/10" />
+                <div className="relative z-10 w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
+                  <span className="text-primary font-medium">02</span>
+                </div>
+                <h3 className="font-heading text-lg font-semibold text-white mb-2 text-center md:text-left">Architecture & Strategy</h3>
+                <p className="text-sm text-muted-foreground text-center md:text-left">Mapping out the exact infrastructure to guarantee scale and performance.</p>
+              </div>
+              <div className="relative">
+                <div className="hidden md:block absolute top-6 left-1/2 w-full h-[1px] bg-white/10" />
+                <div className="relative z-10 w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
+                  <span className="text-primary font-medium">03</span>
+                </div>
+                <h3 className="font-heading text-lg font-semibold text-white mb-2 text-center md:text-left">Design & Prototyping</h3>
+                <p className="text-sm text-muted-foreground text-center md:text-left">Building high-fidelity systems validated by real user testing.</p>
+              </div>
+              <div className="relative">
+                <div className="hidden md:block absolute top-6 left-1/2 w-full h-[1px] bg-white/10" />
+                <div className="relative z-10 w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
+                  <span className="text-primary font-medium">04</span>
+                </div>
+                <h3 className="font-heading text-lg font-semibold text-white mb-2 text-center md:text-left">Engineering Sprints</h3>
+                <p className="text-sm text-muted-foreground text-center md:text-left">Iterative, transparent development with QA built into every step.</p>
+              </div>
+              <div className="relative">
+                <div className="relative z-10 w-12 h-12 rounded-full bg-black border border-primary/40 flex items-center justify-center mb-6 mx-auto md:mx-0 shadow-[0_0_15px_rgba(255,100,0,0.3)]">
+                  <span className="text-primary font-medium">05</span>
+                </div>
+                <h3 className="font-heading text-lg font-semibold text-white mb-2 text-center md:text-left">Launch & Scale</h3>
+                <p className="text-sm text-muted-foreground text-center md:text-left">Rigorous performance auditing prior to seamless deployment.</p>
+              </div>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-            <div className="relative">
-              <div className="hidden md:block absolute top-6 left-1/2 w-full h-[1px] bg-white/10" />
-              <div className="relative z-10 w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
-                <span className="text-primary font-medium">01</span>
-              </div>
-              <h3 className="font-heading text-lg font-semibold text-white mb-2 text-center md:text-left">Discovery Phase</h3>
-              <p className="text-sm text-muted-foreground text-center md:text-left">Deep dive into your business model and technical requirements.</p>
-            </div>
-            <div className="relative">
-              <div className="hidden md:block absolute top-6 left-1/2 w-full h-[1px] bg-white/10" />
-              <div className="relative z-10 w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
-                <span className="text-primary font-medium">02</span>
-              </div>
-              <h3 className="font-heading text-lg font-semibold text-white mb-2 text-center md:text-left">Architecture & Strategy</h3>
-              <p className="text-sm text-muted-foreground text-center md:text-left">Mapping out the exact infrastructure to guarantee scale and performance.</p>
-            </div>
-            <div className="relative">
-              <div className="hidden md:block absolute top-6 left-1/2 w-full h-[1px] bg-white/10" />
-              <div className="relative z-10 w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
-                <span className="text-primary font-medium">03</span>
-              </div>
-              <h3 className="font-heading text-lg font-semibold text-white mb-2 text-center md:text-left">Design & Prototyping</h3>
-              <p className="text-sm text-muted-foreground text-center md:text-left">Building high-fidelity systems validated by real user testing.</p>
-            </div>
-            <div className="relative">
-              <div className="hidden md:block absolute top-6 left-1/2 w-full h-[1px] bg-white/10" />
-              <div className="relative z-10 w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center mb-6 mx-auto md:mx-0">
-                <span className="text-primary font-medium">04</span>
-              </div>
-              <h3 className="font-heading text-lg font-semibold text-white mb-2 text-center md:text-left">Engineering Sprints</h3>
-              <p className="text-sm text-muted-foreground text-center md:text-left">Iterative, transparent development with QA built into every step.</p>
-            </div>
-            <div className="relative">
-              <div className="relative z-10 w-12 h-12 rounded-full bg-black border border-primary/40 flex items-center justify-center mb-6 mx-auto md:mx-0 shadow-[0_0_15px_rgba(255,100,0,0.3)]">
-                <span className="text-primary font-medium">05</span>
-              </div>
-              <h3 className="font-heading text-lg font-semibold text-white mb-2 text-center md:text-left">Launch & Scale</h3>
-              <p className="text-sm text-muted-foreground text-center md:text-left">Rigorous performance auditing prior to seamless deployment.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* SECTION 6: RELATED CASE STUDY PREVIEW */}
       {relatedCaseStudy && (

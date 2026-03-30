@@ -18,6 +18,27 @@ export interface ServiceProduct {
   timeline: string;
 }
 
+export interface ProcessStep {
+  number: string;
+  title: string;
+  description: string;
+  deliverables: string[];
+}
+
+export interface ToolPhase {
+  phase: string;
+  tools: string[];
+}
+
+export interface TimelineBar {
+  label: string;
+  weeks: string;
+  left: string;
+  width: string;
+  accent?: boolean;
+}
+
+
 export interface ServicePageContent {
   slug: string;
   number: string;
@@ -32,6 +53,9 @@ export interface ServicePageContent {
   techStack: string[];
   relatedCaseStudySlug: string;
   faq: { question: string; answer: string }[];
+  processSteps?: ProcessStep[];
+  toolPhases?: ToolPhase[];
+  timelineBars?: TimelineBar[];
 }
 
 export const servicesData: ServicePageContent[] = [
@@ -102,6 +126,52 @@ export const servicesData: ServicePageContent[] = [
         deliverables: ["Spline 3D scenes", "Framer interactive components", "Animation spec documentation"],
         timeline: "2–4 weeks"
       }
+    ],
+    processSteps: [
+      {
+        number: "01",
+        title: "Discovery & UX Research",
+        description: "We interview stakeholders, map user personas, audit competitors, and define the Jobs-to-be-Done. No assumptions — every design decision starts here.",
+        deliverables: ["User personas", "Journey maps", "Competitive analysis", "Opportunity brief"],
+      },
+      {
+        number: "02",
+        title: "Information Architecture & Wireframes",
+        description: "Before any visual design, we map the full product structure — every screen, navigation path, and user flow. Low-fidelity wireframes lock in the logic before we invest in aesthetics.",
+        deliverables: ["Sitemap", "User flow diagrams", "Low-fi wireframes", "Clickable mid-fi prototype"],
+      },
+      {
+        number: "03",
+        title: "High-Fidelity UI Design",
+        description: "Pixel-perfect visual design in Figma — responsive breakpoints, all interaction states, dark/light modes, and WCAG 2.1 AA accessibility compliance.",
+        deliverables: ["Full Figma file", "Component library", "Responsive screens", "Style guide"],
+      },
+      {
+        number: "04",
+        title: "Prototype & User Testing",
+        description: "Interactive prototypes tested with real users before engineering begins. We catch friction points, validate conversion paths, and confirm the flow works.",
+        deliverables: ["Figma prototype", "Maze test results", "UX recommendations report"],
+      },
+      {
+        number: "05",
+        title: "Design System & Dev Handoff",
+        description: "Production-ready design systems with tokenized variables, documented component specs, and annotated Figma Dev Mode handoff files. Zero ambiguity for engineers.",
+        deliverables: ["Design tokens", "Component docs", "Figma Dev Mode", "Asset export pack"],
+      },
+    ],
+    toolPhases: [
+      { phase: "Discovery", tools: ["FigJam", "Maze", "Useberry"] },
+      { phase: "Wireframes & IA", tools: ["Figma", "FigJam"] },
+      { phase: "UI Design", tools: ["Figma", "Adobe XD", "Spline 3D"] },
+      { phase: "Motion & 3D", tools: ["Framer", "Lottie", "Spline"] },
+      { phase: "Dev Handoff", tools: ["Figma Dev Mode", "Zeroheight"] },
+    ],
+    timelineBars: [
+      { label: "Discovery & Research", weeks: "1–2 wks", left: "0%", width: "14%" },
+      { label: "IA & Wireframes", weeks: "1–3 wks", left: "14%", width: "22%" },
+      { label: "High-Fidelity Design", weeks: "2–5 wks", left: "36%", width: "36%" },
+      { label: "Prototype & Testing", weeks: "1–2 wks", left: "72%", width: "14%" },
+      { label: "Dev Handoff", weeks: "1–2 wks", left: "86%", width: "14%", accent: true },
     ]
   },
   {
